@@ -1,6 +1,7 @@
 <template>
   <div>
     <NuxtChild 
+    :books="books" 
     @add-book-list="addBook" />
   </div>
 </template>
@@ -14,12 +15,12 @@ export default {
       newBook: null,
     }
   },
-  mounted() {
+  created() {
     if (localStorage.getItem(STORAGE_KEY)) {
       try {
         this.books = JSON.parse(localStorage.getItem(STORAGE_KEY))
       } catch (e) {
-        localStorage.removeItem(STORAGE_KEY)
+        // localStorage.removeItem(STORAGE_KEY)
       }
     }
   },
@@ -32,9 +33,11 @@ export default {
         image: e.image,
         description: e.description,
         readDate: '',
-        memo: ''
-      });
+        memo: '',
+      })
       this.saveBooks()
+      // console.log(this.books.slice(-1)[0].id)
+      this.goToEditPage(this.books.slice(-1)[0].id)
     },
     removeBook(x) {
       this.books.splice(x, 1)
@@ -43,6 +46,9 @@ export default {
     saveBooks() {
       const parsed = JSON.stringify(this.books)
       localStorage.setItem(STORAGE_KEY, parsed)
+    },
+    goToEditPage(id) {
+      this.$router.push(`/bookPage/edit/${id}`)
     },
   },
 }
