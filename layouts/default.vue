@@ -34,20 +34,19 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <SharedFooter />
   </v-app>
 </template>
 
 <script>
+import SharedFooter from '../components/SharedFooter.vue'
 export default {
   name: 'DefaultLayout',
+  components: { SharedFooter },
   data() {
     return {
       clipped: false,
       drawer: false,
-      fixed: false,
       items: [
         {
           icon: 'mdi-apps',
