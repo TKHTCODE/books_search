@@ -1,6 +1,7 @@
 <template>
   <div>
-    <NuxtChild />
+    <NuxtChild 
+    @add-book-list="addBook" />
   </div>
 </template>
 
@@ -23,14 +24,16 @@ export default {
     }
   },
   methods: {
-    addBook() {
+    addBook(e) {
       // ensure they actually typed something
-      if (!this.newBook) {
-        return
-      }
-
-      this.books.push(this.newBook)
-      this.newBook = ''
+      this.books.push({
+        id: this.books.length,
+        title: e.title,
+        image: e.image,
+        description: e.description,
+        readDate: '',
+        memo: ''
+      });
       this.saveBooks()
     },
     removeBook(x) {

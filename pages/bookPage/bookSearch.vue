@@ -31,7 +31,9 @@
               {{ book.description }}
               <v-spacer />
               <v-card-actions>
-                <v-btn class="mx-2" fab dark color="indigo">
+                <v-btn 
+                fab dark color="indigo" class="mx-2" 
+                @click="addBookList(index)">
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn>
               </v-card-actions>
@@ -53,6 +55,9 @@ export default {
     }
   },
   methods: {
+    addBookList(index){
+      this.$emit('add-book-list', this.searchResults[index])
+    },
     async search(keyword) {
       // Create query string
       this.searchResults = []
