@@ -11,12 +11,14 @@ export default function({
         onAuthStateChanged(auth, user => {
             if(user){
                 store.dispatch('auth/addUserInfo', user)
+            }else if(!route.path.match(/\/auth\//)){
+                redirect('/auth/UserLogin')
             }
         })
     }
-    const isAuthenticated = store.getters['auth/getLoggedIn']
-    if(!isAuthenticated && !route.path.match(/\/auth\//)){
-        redirect('/auth/UserLogin')
-    }
+    // const isAuthenticated = store.getters['auth/getLoggedIn']
+    // if(!isAuthenticated && !route.path.match(/\/auth\//)){
+    //     redirect('/auth/UserLogin')
+    // }
     
 }
