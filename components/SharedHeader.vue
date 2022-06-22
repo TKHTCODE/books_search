@@ -30,6 +30,12 @@
 
 <script>
 export default {
+  props:{
+    books:{
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
       drawer: false,
@@ -52,6 +58,11 @@ export default {
       title: 'Books Search',
     }
   },
+  computed:{
+    isLoggedIn(){
+      return this.$store.getters['auth/getLoggedIn']
+    }
+  }
 }
 </script>
 

@@ -20,9 +20,6 @@ export default {
             const querySnapshot = await getDocs(collection(db, 'tasks'))
             querySnapshot.forEach(doc => {
                 this.tasks.push(doc.data())
-                console.log(doc.id, doc.data())
-                console.log(doc.data().id)
-                console.log(doc.data().title)
             })
         }catch(e){
             console.error('error', e)

@@ -32,12 +32,9 @@ export default {
       const auth = getAuth(this.$firebase)
       createUserWithEmailAndPassword(auth, this.email, this.password)
       .then(userCredential => {
-        console.log( userCredential.user )
-        console.log('User has been added')
       })
       .catch(e => {
         alert(e.message)
-        console.log('error: ', e)
       })
     }
   }

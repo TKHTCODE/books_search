@@ -25,7 +25,6 @@ export const actions = {
         commit('setLoginState', true)
         commit('setUserUid', userCredential.user.uid)
         commit('setEmail', userCredential.user.email)
-        console.log('Login ok')
         this.$router.push('/bookPage/bookIndex')
       })
       .catch((e) => {
@@ -43,9 +42,13 @@ export const actions = {
           this.$router.push('/auth/UserLogin')
       })
       .catch(e => {
-          
-      })
 
+      })
+  },
+  addUserInfo({commit}, payload){
+    commit('setLoginState', true)
+    commit('setUserUid', payload.uid)
+    commit('setEmail', payload.email)
   }
 }
 
