@@ -83,5 +83,8 @@
 <script>
 export default {
   name: 'IndexPage',
+  asyncData({ redirect }) {
+    redirect('/bookPage/bookIndex')
+  },
 }
 </script>

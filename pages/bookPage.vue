@@ -3,7 +3,8 @@
     <NuxtChild 
     :books="books" 
     @add-book-list="addBook"
-    @update-book-info="updateBookInfo" />
+    @update-book-info="updateBookInfo"
+    @delete-local-storage="deleteLocalStorage" />
   </div>
 </template>
 
@@ -65,6 +66,15 @@ export default {
     goToEditPage(id) {
       this.$router.push(`/bookPage/edit/${id}`)
     },
+    deleteLocalStorage(){
+      const isDeleted = 'Are you sure?'
+      if(window.confirm(isDeleted)){
+        localStorage.setItem(STORAGE_KEY,'')
+        localStorage.removeItem(STORAGE_KEY)
+        this.books=[]
+        window.location.reload()
+      }
+    }
   },
 }
 </script>
