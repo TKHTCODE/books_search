@@ -2,7 +2,8 @@
   <div>
     <NuxtChild 
     :books="books" 
-    @add-book-list="addBook" />
+    @add-book-list="addBook"
+    @update-book-info="updateBookInfo" />
   </div>
 </template>
 
@@ -46,6 +47,20 @@ export default {
     saveBooks() {
       const parsed = JSON.stringify(this.books)
       localStorage.setItem(STORAGE_KEY, parsed)
+    },
+    updateBookInfo(e){
+      const updateInfo = {
+      id: e.id,
+      readDate: e.readDate,
+      memo: e.memo,
+      title: this.books[e.id].title,
+      image: this.books[e.id].image,
+      description: this.books[e.id].description,
+      }
+      this.books.splice(e.id, 1, updateInfo)
+      this.saveBooks();
+      this.$router.push('/bookPage/bookIndex')
+
     },
     goToEditPage(id) {
       this.$router.push(`/bookPage/edit/${id}`)
