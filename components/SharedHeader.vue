@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-show="isLoggedIn">
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list @click.stop="drawer = !drawer">
         <v-list-item
@@ -20,6 +21,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    </div>
     <v-app-bar fixed app style="width: 100%;">
       <div v-show="isLoggedIn">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
