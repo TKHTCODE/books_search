@@ -11,7 +11,7 @@
         <v-btn block color="primary" @click="search(keyword)"><v-icon dark right class="ma-2"> mdi-text-box-search </v-icon> Search </v-btn>
       </v-col>
       <v-col cols="6">
-        <v-btn block text to="/bookPage/bookIndex"><v-icon dark right class="ma-2"> mdi-view-list </v-icon> My Lists </v-btn>
+        <v-btn block text to="/bookPage/bookIndex"><v-icon dark right class="ma-2"> mdi-view-list </v-icon> My List </v-btn>
       </v-col>
     </v-row>
     <div v-show="!isFound" class="mt-4">No result</div>
