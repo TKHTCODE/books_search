@@ -1,18 +1,34 @@
 <template>
-  <div>
-    Login
+  <div class="py-4">
+    <h1 class="mb-4">Login</h1>
     <v-row>
-      <v-col cols="6">
-        <v-text-field v-model="email" label="Mail Address" />
-        <v-text-field v-model="password" label="Password" />
+      <v-col>
+        <v-text-field
+          v-model="email"
+          :rules="[rules.required, rules.email]"
+          label="E-mail"
+        />
+        <v-text-field
+          v-model="password"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.required, rules.min]"
+          :type="show ? 'text' : 'password'"
+          name="input-10-1"
+          label="Password"
+          hint="At least 8 characters"
+          counter
+          @click:append="show = !show"
+        />
       </v-col>
     </v-row>
     <v-row class="mb-4">
-      <v-col cols="3">
-        <v-btn color="primary" @click="login"> Login </v-btn>
+      <v-col>
+        <v-btn block color="primary" @click="login"> Login </v-btn>
       </v-col>
-      <v-col cols="3">
-        <v-btn text color="secondary" to="./UserRegister"> Register Page </v-btn>
+      <v-col>
+        <v-btn block text color="secondary" to="./UserRegister">
+          Register Page
+        </v-btn>
       </v-col>
     </v-row>
   </div>
@@ -22,18 +38,30 @@
 export default {
   data() {
     return {
+      show: false,
       email: '',
       password: '',
+      rules: {
+        required: (value) => !!value || 'Required.',
+        min: (v) => v.length >= 8 || 'Min 8 characters',
+        emailMatch: () => `The email and password you entered don't match`,
+        counter: (value) => value.length <= 20 || 'Max 20 characters',
+        email: (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      },
     }
   },
-  methods:{
-    login(){
+  methods: {
+    login() {
       this.$store.dispatch('auth/login', {
         email: this.email,
-        password: this.password
+        password: this.password,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

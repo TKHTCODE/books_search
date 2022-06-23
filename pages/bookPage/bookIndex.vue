@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <h1>book/index</h1>
-    <v-row>
-      <v-col cols="8">
-        <v-btn color="primary" to="/bookPage/bookSearch">Search</v-btn>
+  <div class="py-4">
+    <h1 class="mb-4 text-center">My list</h1>
+    <v-row class="mb-4">
+      <v-col cols="6">
+        <v-btn block color="primary" to="/bookPage/bookSearch">
+          <v-icon dark right class="ma-2"> mdi-text-box-search </v-icon>
+          Search
+        </v-btn>
       </v-col>
-      <v-col cols="4">
-        <v-btn color="error" @click="deleteLocalStorage"> Delete </v-btn>
+      <v-col cols="6">
+        <v-btn block color="error" @click="deleteLocalStorage">
+          <v-icon dark right class="ma-2"> mdi-trash-can-outline </v-icon>
+          Delete
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -18,7 +24,11 @@
             </v-col>
             <v-col cols="8">
               <v-card-title>{{ book.title }}</v-card-title>
-              Date of reading: {{ book.readDate }} Memo: {{ book.memo }}
+              <v-card-text
+                >Date of reading: {{ book.readDate }}
+                <br />
+                Memo: {{ book.memo }}
+              </v-card-text>
               <v-spacer />
               <v-card-actions>
                 <v-btn
@@ -41,18 +51,17 @@
 
 <script>
 export default {
-
   props: {
     books: {
       type: Array,
       default: () => {},
     },
   },
-  methods:{
-  deleteLocalStorage() {
-    this.$emit('delete-local-storage')
+  methods: {
+    deleteLocalStorage() {
+      this.$emit('delete-local-storage')
+    },
   },
-  }
 }
 </script>
 

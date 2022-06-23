@@ -29,7 +29,19 @@ export const actions = {
       })
       .catch((e) => {
         alert(e.message)
-        console.log('error: ', e)
+      })
+  },
+  async register({ commit }, payload) {
+    const auth = getAuth(this.$firebase)
+    await signInWithEmailAndPassword(auth, payload.email, payload.password)
+      .then((userCredential) => {
+        commit('setLoginState', true)
+        commit('setUserUid', userCredential.user.uid)
+        commit('setEmail', userCredential.user.email)
+        this.$router.push('/bookPage/bookIndex')
+      })
+      .catch((e) => {
+        alert(e.message)
       })
   },
   async logout({commit}){

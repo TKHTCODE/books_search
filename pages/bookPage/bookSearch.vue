@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <v-row>
-      <v-col cols="6">
+  <div class="text-center py-4">
+    <h1>Search</h1>
+    <v-row class="mx-auto">
+      <v-col class="px-4">
         <v-text-field v-model="keyword" label="Book Title" />
       </v-col>
     </v-row>
     <v-row class="mb-4">
-      <v-col cols="3">
-        <v-btn color="primary" @click="search(keyword)"> Search </v-btn>
+      <v-col cols="6">
+        <v-btn block color="primary" @click="search(keyword)"><v-icon dark right class="ma-2"> mdi-text-box-search </v-icon> Search </v-btn>
       </v-col>
-      <v-col cols="3">
-        <v-btn color="secondary" to="/bookPage"> Return to Lists </v-btn>
+      <v-col cols="6">
+        <v-btn block text to="/bookPage/bookIndex"><v-icon dark right class="ma-2"> mdi-view-list </v-icon> My Lists </v-btn>
       </v-col>
     </v-row>
     <div v-show="!isFound" class="mt-4">No result</div>
